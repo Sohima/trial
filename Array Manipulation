@@ -1,0 +1,27 @@
+from collections import Counter
+
+def arrayManipulation(n, m,queries):
+    c = Counter()
+    for a,b,k in queries:
+        c[a]  +=k
+        c[b+1]-=k
+    arrSum = 0
+    maxSum = 0
+    for i in sorted(c)[:-1]:
+        arrSum+= c[i]
+        maxSum = max(maxSum,arrSum)
+    return maxSum      
+if __name__ == '__main__':
+
+    nm = input().split()
+
+    n = int(nm[0])
+
+    m = int(nm[1])
+
+    queries = []
+
+    for _ in range(m):
+        queries.append(list(map(int, input().rstrip().split())))
+
+    result = arrayManipulation(n,m,queries)
